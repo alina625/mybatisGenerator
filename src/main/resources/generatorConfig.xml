@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- <classPathEntry location="mysql-connector-java-5.1.27.jar"/> -->
+    <properties resource="config.properties"/>
+    <context id="my" targetRuntime="MyBatis3">
+        <!-- 生成的pojo，实现Serializable -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+        <commentGenerator>
+            <!-- 是否取出自动生成的注释 -->
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!-- 链接配置 -->
+        <jdbcConnection driverClass="${jdbc.driver}" 
+            connectionURL="${jdbc.url}" userId="${jdbc.username}" password="${jdbc.password}">
+         </jdbcConnection>
+         <!-- 默认false——将jdbc的DECIMAL和NUMERIC类型解析为Integer
+         true——将jdbc的DECIMAL和NUMERIC类型解析为java.math.BigDecimal -->
+         <javaTypeResolver>
+            <property name="forceBigDecimal" value="false"/>
+         </javaTypeResolver>
+         <!-- 生成实体类路径 -->
+         <javaModelGenerator targetPackage="${entity.url}" targetProject="${targetProject}">
+            <property name="enableSubPackages" value="true"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+         </javaModelGenerator>
+         <!-- 对应mapper.xml文件 -->
+         <sqlMapGenerator targetPackage="${mapping.url}" targetProject="${targetProject}">
+            <property name="enableSubPackages" value="true"/>
+         </sqlMapGenerator>
+         <!-- 对应Mappper接口类文件 -->
+         <javaClientGenerator targetPackage="${dao.url}" type="XMLMAPPER" targetProject="${targetProject}">
+            <property name="enableSubPackages" value="true"/>
+         </javaClientGenerator>
+         <!-- 列出要生成代码的所有表 -->
+         <table tableName="${tableName}" domainObjectName="${entityName}" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" 
+            enableSelectByExample="false" selectByExampleQueryId="false"></table>
+    </context>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</generatorConfiguration>
